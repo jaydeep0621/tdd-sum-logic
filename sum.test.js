@@ -15,3 +15,7 @@ test('return sum of multiple number', () => {
 test('return sum on newlines as delimiters', () => {
   expect(add('1\n2,3')).toBe(6);
 });
+
+test('return sum on multiple delimiters', () => {
+  expect(add('//;\n1;\n2')).toBe(3);
+});
