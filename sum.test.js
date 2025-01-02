@@ -19,3 +19,15 @@ test('return sum on newlines as delimiters', () => {
 test('return sum on multiple delimiters', () => {
   expect(add('//;\n1;\n2')).toBe(3);
 });
+
+test('throws exception with one negative numbers', () => {
+  expect(() => add('1,-2,3')).toThrow('Negative numbers not allowed: -2');
+});
+
+test('throws exception with all negative numbers', () => {
+  try {
+    add('1,-2,-3');
+  } catch (e) {
+    expect(e.message).toBe('Negative numbers not allowed: -2,-3');
+  }
+});

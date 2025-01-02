@@ -12,7 +12,22 @@ function add(numbers) {
   }
 
   const nums = numbers.split(',');
-  return nums.reduce((sum, num) => sum + parseInt(num, 10), 0);
+  
+  let negativeNumbers = [];
+
+  const sum = nums.reduce((total, num) => {
+    const parsedNum = parseInt(num, 10);
+    if (parsedNum < 0) {
+      negativeNumbers.push(parsedNum);
+    }
+    return total + parsedNum;
+  }, 0);
+
+  if (negativeNumbers.length > 0) {
+    throw new Error(`Negative numbers not allowed: ${negativeNumbers.join(',')}`);
+  };
+
+  return sum;
 };
 
 module.exports = add;
