@@ -1,6 +1,6 @@
 const add = require('./sum');
 
-test('empty string returns 0', () => {
+test('return empty string', () => {
   expect(add('')).toBe(0);
 });
 
@@ -10,4 +10,8 @@ test('return number itself when single number', () => {
 
 test('return sum of multiple number', () => {
   expect(add('1,2,3')).toBe(6);
+});
+
+test('return sum on newlines as delimiters', () => {
+  expect(add('1\n2,3')).toBe(6);
 });
