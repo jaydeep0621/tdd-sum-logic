@@ -1,7 +1,12 @@
-function add(numbers) {
-  if (numbers === '') {
-    return 0;
+function checkNegativeNumber(parseNumber) {
+  const negativeNumbers = parseNumber.filter(num => num < 0);
+
+  if (negativeNumbers.length > 0) {
+    throw new Error(`Negative numbers not allowed: ${negativeNumbers.join(',')}`);
   };
+}
+
+function parseStringToNumber(numbers) {
   if (numbers.startsWith('//')) {
     const delimiterEndIndex = numbers.indexOf('\n');
     const delimiter = numbers.slice(2, delimiterEndIndex);
@@ -9,25 +14,29 @@ function add(numbers) {
     numbers = numbers.replace(new RegExp(delimiter, 'g'), ',');
   } else {
     numbers = numbers.replace(/\n/g, ',');
-  }
+  };
 
   const nums = numbers.split(',');
-  
-  let negativeNumbers = [];
 
-  const sum = nums.reduce((total, num) => {
-    const parsedNum = parseInt(num, 10);
-    if (parsedNum < 0) {
-      negativeNumbers.push(parsedNum);
-    }
-    return total + parsedNum;
-  }, 0);
+  parseNumber = nums.map(num => parseInt(num, 10));
 
-  if (negativeNumbers.length > 0) {
-    throw new Error(`Negative numbers not allowed: ${negativeNumbers.join(',')}`);
+  return parseNumber;
+};
+
+function add(numbers) {
+  if (numbers === '') {
+    return 0;
   };
+
+  const parseNumber = parseStringToNumber(numbers);
+
+  checkNegativeNumber(parseNumber);
+
+  const sum = parseNumber.reduce((total, num) => total + num, 0);
 
   return sum;
 };
 
 module.exports = add;
+
+
