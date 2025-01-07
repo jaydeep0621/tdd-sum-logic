@@ -31,3 +31,7 @@ test('throws exception with all negative numbers', () => {
     expect(e.message).toBe('Negative numbers not allowed: -2,-3');
   }
 });
+
+test('return sum of number and ignore greater than 1000', () => {
+  expect(add('1,2,3,1000')).toBe(6);
+})

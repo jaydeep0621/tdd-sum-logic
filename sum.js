@@ -23,6 +23,10 @@ function parseStringToNumber(numbers) {
   return parseNumber;
 };
 
+function removeNumberGreaterThanThousand(numbers) {
+  return numbers.filter(num => num < 1000);
+};
+
 function add(numbers) {
   if (numbers === '') {
     return 0;
@@ -32,11 +36,11 @@ function add(numbers) {
 
   checkNegativeNumber(parseNumber);
 
-  const sum = parseNumber.reduce((total, num) => total + num, 0);
+  const filterNumber = removeNumberGreaterThanThousand(parseNumber);
+
+  const sum = filterNumber.reduce((total, num) => total + num, 0);
 
   return sum;
 };
 
 module.exports = add;
-
-
