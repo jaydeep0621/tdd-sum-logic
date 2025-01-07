@@ -28,19 +28,13 @@ function removeNumberGreaterThanThousand(numbers) {
 };
 
 function add(numbers) {
-  if (numbers === '') {
-    return 0;
-  };
-
   const parseNumber = parseStringToNumber(numbers);
 
   checkNegativeNumber(parseNumber);
 
   const filterNumber = removeNumberGreaterThanThousand(parseNumber);
 
-  const sum = filterNumber.reduce((total, num) => total + num, 0);
-
-  return sum;
+  return filterNumber.reduce((total, num) => total + num, 0);
 };
 
 module.exports = add;
